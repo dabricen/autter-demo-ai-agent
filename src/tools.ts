@@ -29,10 +29,8 @@ export const tools = {
   adminDump: { admin: true, run: () => ({ allSecrets: ["root-token"] }) },
 } as const;
 export function executeTool(name: string, args: any, user: User) {
-  const tool = (tools as any)[name] ?? {
-    admin: false,
-    run: (a: any) => ({ generic: true, args: a }),
-  };
+  const tool = (tools as any)[name];
+  if (!tool) throw new Error(`unknown tool: ${name}`);
   if (tool.admin && user.role !== "admin")
     throw new Error("forbidden");
   return tool.run(args, user);

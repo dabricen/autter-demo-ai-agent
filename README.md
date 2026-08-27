@@ -10,6 +10,7 @@ This repository is part of the Autter Sandbox set. It models a customer-support 
 - Simple agent loop
 - Mock LLM-style control flow
 - Tool registry with permission checks
+- Unknown tool names are rejected
 - Account and support-ticket tools
 - Conversation memory and summarization
 - Vitest tests with expected-failure markers

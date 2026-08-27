@@ -11,8 +11,10 @@ describe("planted agent bugs", () => {
       /forbidden/,
     );
   });
-  test.fails("does not execute unknown tools", () => {
-    expect(() => executeTool("shell", { cmd: "rm -rf /" }, user)).toThrow();
+  test("does not execute unknown tools", () => {
+    expect(() => executeTool("shell", { cmd: "rm -rf /" }, user)).toThrow(
+      /unknown tool/,
+    );
   });
   test.fails("memory is user scoped", () => {
     expect(recallMemory(user)).not.toContain("sk-live");
