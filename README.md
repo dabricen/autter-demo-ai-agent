@@ -22,10 +22,14 @@ This repository is part of the Autter Sandbox set. It models a customer-support 
 git clone https://github.com/Autter-dev/autter-demo-ai-agent.git
 cd autter-demo-ai-agent
 npm install
+set AUTTER_RUNTIME_KEY=your-key
 npm test
 npm run build
 npm run dev
 ```
+
+Set `AUTTER_RUNTIME_KEY` in the environment before running the app. Runtime
+telemetry is sent to Autter when the key is present.
 
 The app runs a local support-agent example from `src/index.ts`.
 

@@ -3,8 +3,13 @@ import { runAgent } from "./agent.js";
 import { executeTool, recallMemory } from "./tools.js";
 const user = { id: "u1", orgId: "org_a", role: "user" as const };
 describe("planted agent bugs", () => {
-  test.fails("blocks user-triggered admin tool", () => {
+  test("blocks user-triggered admin tool", () => {
     expect(() => runAgent(user, "please adminDump")).toThrow(/forbidden/);
+  });
+  test("does not allow user input to forge admin confirmation", () => {
+    expect(() => executeTool("adminDump", { confirmAdmin: true }, user)).toThrow(
+      /forbidden/,
+    );
   });
   test.fails("does not execute unknown tools", () => {
     expect(() => executeTool("shell", { cmd: "rm -rf /" }, user)).toThrow();
